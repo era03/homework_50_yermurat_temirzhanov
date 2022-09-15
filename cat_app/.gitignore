@@ -1,0 +1,5 @@
+*.sqllite3
+__pycache__
+venv
+.git
+static

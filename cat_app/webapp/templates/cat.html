@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #444444;
+        }
+        .container {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 900px;
+        }
+        .page_link {
+            margin-left: 15px;
+        }
+        .cat_image {
+            width: 200px;
+            height: 200px;
+        }
+        .cat_main {
+            display: flex;
+        }
+        .cat_description {
+            margin-left: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            font-weight: bold;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cat_main">
+            <div>
+                {%if mood > 70%}
+                <img class="cat_image" src="{% static 'happy_cat.jpg' %}" alt="cat">
+                {%elif mood < 20%}
+                <img class="cat_image" src="{% static 'angry_cat.jpg' %}" alt="cat">
+                {%else%}
+                <img class="cat_image" src="{% static 'cat.jpg' %}" alt="cat">
+                {%endif%}
+            </div>
+            <div class="cat_description">
+                <p>Cat - {{name}}</p>
+                <p>Age - {{age}}</p>
+                <p>Satiety - {{satiety}}</p>
+                <p>Mood - {{mood}}</p>
+                {% if is_sleeping == True%}
+                <p>Cat is sleeping!</p>
+                {% endif%}
+                {% if satiety == 0%}
+                <p>Cat is dead!</p>
+                {% endif%}
+                {% if mood == 0%}
+                <p>Cat is angry!</p>
+                {% endif%}
+            </div>
+        </div>
+        <div>
+            <p>Choose the action</p>
+            <form action="/cat/action" method="post">
+                {% csrf_token %}
+                <select name="action" placeholder="Choose">
+                    <option value="play">play with cat</option>
+                    <option value="feed">feed the cat</option>
+                    <option value="sleep">put to sleep</option>
+                </select>
+                <button class="create_button" type="submit">Create</button>
+            </form>
+
+        </div>
+    </div>
+</body>
+</html>

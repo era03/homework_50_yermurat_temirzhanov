@@ -1,0 +1,47 @@
+{% csrf_token %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a cat</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #444444;
+        }
+        .container {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+        }
+        .row {
+            margin-bottom: 30px;
+        }
+        .age_input{
+            margin-left: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>You are welcomed by the cat simulator to start, enter the name and age of the cat</h1>
+        <form action="/cat" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <label for="text">Name: </label>
+                <input type="text" name="name"/>
+            </div>
+            <div class="row">
+                <label for="text">Age: </label>
+                <input class="age_input" type="number" name="age"/>
+            </div>
+            <input type="submit" value="Create">
+        </form>
+
+    </div>
+</body>
+</html>
